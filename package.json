@@ -1,0 +1,28 @@
+{
+	"name": "mirfak-notes",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build"
+	},
+	"dependencies": {
+		"@vkontakte/icons": "^1.69.0",
+		"@vkontakte/vk-bridge": "^2.3.0",
+		"@vkontakte/vkjs": "^0.20.0",
+		"@vkontakte/vkui": "^4.0.3",
+		"gsap": "^3.5.1",
+		"mongoose": "^5.11.9",
+		"next": "^10.0.4",
+		"next-api-middleware": "^0.6.0",
+		"react": "^0.0.0-experimental-3310209d0",
+		"react-dom": "^0.0.0-experimental-3310209d0",
+		"react-use": "^15.3.4",
+		"swr": "^0.3.11"
+	},
+	"devDependencies": {
+		"@trivago/prettier-plugin-sort-imports": "^1.4.1",
+		"next-compose-plugins": "^2.2.1",
+		"next-images": "^1.6.2"
+	}
+}

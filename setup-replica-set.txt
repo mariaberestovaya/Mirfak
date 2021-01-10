@@ -1,0 +1,5 @@
+mongod.cfg
+	replication.replSetName: test
+
+mongo.exe
+	rs.initiate()
