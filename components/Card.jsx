@@ -1,8 +1,10 @@
+import Icon16Cancel from '@vkontakte/icons/dist/16/cancel';
 import { ContentCard } from '@vkontakte/vkui';
 import { useState } from 'react';
 import css from 'styled-jsx/css';
+import { mutate } from 'swr';
 
-import { custom_fetch } from '../helpers';
+import { custom_fetch, s } from '../helpers';
 
 export default function Card({ _id, title, text, color }) {
 	const [note_title, set_note_title] = useState(title);
@@ -17,22 +19,34 @@ export default function Card({ _id, title, text, color }) {
 			<ContentCard
 				className={className}
 				header={
-					<input
-						value={note_title}
-						spellCheck="false"
-						placeholder="title"
-						onChange={async (e) => {
-							const v = e.target.value;
+					<>
+						<button
+							className="cross"
+							onClick={async () => {
+								await custom_fetch(`delete_note/${_id}`);
 
-							set_note_title(v);
+								mutate(s('notes'));
+							}}
+						>
+							<Icon16Cancel />
+						</button>
+						<input
+							value={note_title}
+							spellCheck="false"
+							placeholder="title"
+							onChange={async (e) => {
+								const v = e.target.value;
 
-							await custom_fetch(`update_note/${_id}`, {
-								title: v,
-								text: note_text,
-								color,
-							});
-						}}
-					/>
+								set_note_title(v);
+
+								await custom_fetch(`update_note/${_id}`, {
+									title: v,
+									text: note_text,
+									color,
+								});
+							}}
+						/>
+					</>
 				}
 				text={
 					<textarea
@@ -57,6 +71,21 @@ export default function Card({ _id, title, text, color }) {
 			/>
 			{styles}
 			<style jsx>{`
+				 {
+				.cross {
+					border: 0;
+					background-color: transparent;
+					padding: 10px;
+
+					position: absolute;
+					right: 0;
+					top: 0;
+					z-index: 1;
+				}
+				.cross:focus {
+					outline: none;
+					border: none;
+				}
 				input {
 					background: transparent;
 					border: none;

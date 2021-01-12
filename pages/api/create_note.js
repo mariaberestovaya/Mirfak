@@ -12,7 +12,7 @@ async function create_note(
 		color,
 	});
 
-	res.end();
+	res.json();
 }
 
 export default vk_mini_apps(create_note);
